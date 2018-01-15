@@ -1,0 +1,17 @@
+#!/bin/bash
+
+KEEPALIVE_ARGS=
+
+if [[ "$1" == "--gdb" ]] ; then
+  KEEPALIVE_ARGS="--gdb"
+  shift 1
+fi
+
+keepalive $KEEPALIVE_ARGS \
+  /codecompass/bin/CodeCompass_parser \
+  -w /workspace \
+  -d "pgsql:host=${DB_HOST};port=${DB_PORT};database=${DB_NAME};user=${DB_USER};password=${DB_PASSWORD}" \
+  -n "${PROJECTNAME}" \
+  -i "${COMPILATION_DB}" \
+  -f $@
+

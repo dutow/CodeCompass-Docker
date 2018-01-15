@@ -69,7 +69,7 @@ RUN wget http://www.codesynthesis.com/download/odb/2.4/libodb-2.4.0.tar.gz && \
     ./configure --prefix=/deps/odb CXXFLAGS=-I/deps/odb/include LDFLAGS=-L/deps/odb/lib && \
     make install && \
     cd .. && \
-    rm -rf odb* && |
+    rm -rf odb* && \
     rm -rf libodb*
 
 # Compile gtest

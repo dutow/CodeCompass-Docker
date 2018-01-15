@@ -1,4 +1,5 @@
-FROM dutow/codecompass-base:latest
+ARG DOCKER_ORGANIZATION
+FROM ${DOCKER_ORGANIZATION}/codecompass-xenial-base:latest
 MAINTAINER Zsolt Parragi <zsolt.parragi@cancellar.hu>
 
 COPY codecompass /codecompass

@@ -1,4 +1,6 @@
-FROM dutow/codecompass-pgsql:latest
+ARG DOCKER_ORGANIZATION
+ARG CODECOMPASS_IMAGE
+FROM ${DOCKER_ORGANIZATION}/${CODECOMPASS_IMAGE}:latest
 MAINTAINER Zsolt Parragi <zsolt.parragi@cancellar.hu>
 
 ENV CC_PORT="6251"

@@ -1,0 +1,53 @@
+version: '3.2'
+services:
+  dbserver:
+    image: "postgres"
+  parser:
+    build: parser-for-mysql
+    volumes:
+      - type: bind
+        source: ./mysql-server
+        target: /work/src
+      - cc-workspace:/workspace
+    depends_on:
+      - dbserver
+    command: config-and-parse.sh
+    ports: [ 6251 ]
+  server:
+    image: "dutow/codecompass-xenial-pgsql-server"
+    volumes:
+      - cc-workspace:/workspace
+    depends_on:
+      - dbserver
+  debug-sh:
+    build:
+      context: ./parser-for-mysql
+      args:
+        BASE_IMAGE: "dutow/codecompass-xenial-pgsql-debug-parser:latest"
+    volumes:
+      - type: bind
+        source: ./mysql-server
+        target: /work/src
+      - cc-workspace:/workspace
+    depends_on:
+      - dbserver
+    # gdb requires additional privileges
+    privileged: true
+    command: bash
+  gdb:
+    build:
+      context: ./parser-for-mysql
+      args:
+        BASE_IMAGE: "dutow/codecompass-xenial-pgsql-debug-parser:latest"
+    volumes:
+      - type: bind
+        source: ./mysql-server
+        target: /work/src
+      - cc-workspace:/workspace
+    depends_on:
+      - dbserver
+    # gdb requires additional privileged
+    privileged: true
+    command: config-and-parse.sh --gdb
+volumes:
+  cc-workspace:

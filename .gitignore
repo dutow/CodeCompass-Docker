@@ -1,2 +1,2 @@
-src
-pgsql/codecompass
+builder/codecompass
+builder/build
