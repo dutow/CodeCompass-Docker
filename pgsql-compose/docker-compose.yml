@@ -1,0 +1,21 @@
+version: '3'
+services:
+  dbserver:
+    image: "postgres"
+  parser:
+    image: "dutow/codecompass-pgsql-parser"
+    volumes:
+      - <src-dir>:/work/src
+      - cc-workspace:/workspace
+    depends_on:
+      - dbserver
+    environment:
+      POSTGRES_PASSWORD: "secret"
+  server:
+    image: "dutow/codecompass-pgsql-server"
+    volumes:
+      - cc-workspace:/workspace
+    depends_on:
+      - dbserver
+volumes:
+  cc-workspace:
