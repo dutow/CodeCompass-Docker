@@ -20,6 +20,6 @@ RUN \
 
 USER docker:docker
 
-ENV CMAKE_PREFIX_PATH=/deps/thrift:/deps/clang/share/llvm/cmake:/deps/odb:${CMAKE_PREFIX_PATH}
+ENV CMAKE_PREFIX_PATH=/deps/thrift:/usr/lib/llvm-6.0/lib/cmake/clang:/deps/odb:${CMAKE_PREFIX_PATH}
 ENV PATH=${PATH}:/deps/thrift/bin:/deps/odb/bin
 
