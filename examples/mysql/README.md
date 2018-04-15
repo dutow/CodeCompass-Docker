@@ -25,7 +25,7 @@ docker-compose build
 Parse the sources:
 
 ```
-docker-compose run parer
+docker-compose run parser
 ```
 
 If something is wrong, use the debug image. This command will open a bash:
@@ -37,6 +37,6 @@ docker-compose run debug-sh
 Finally, after the project is parsed, run the server:
 
 ```
-docker-compose run server
+docker-compose run --service-ports server
 ```
 

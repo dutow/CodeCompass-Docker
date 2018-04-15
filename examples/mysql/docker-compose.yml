@@ -12,13 +12,14 @@ services:
     depends_on:
       - dbserver
     command: config-and-parse.sh
-    ports: [ 6251 ]
   server:
     image: "dutow/codecompass-xenial-pgsql-server"
     volumes:
       - cc-workspace:/workspace
     depends_on:
       - dbserver
+    ports: 
+      - 6251:6251
   debug-sh:
     build:
       context: ./parser-for-mysql
